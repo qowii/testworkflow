@@ -14,7 +14,10 @@ jobs:
             fqbn: "esp32:esp32:esp32"
 
     env:
-      ESP32CONFIGFILE: "./Common/Config/arduino-cli.yml"
+      ESP32CONFIGFILE: --config-file ./Common/Config/arduino-cli.yml
+      ESP32EXLIBDIR: ./ESP32/External-libraries/
+      ESP32EXLIBBUILDDIR: ${{ env.ESP32EXLIBDIR }}/build
+      ESP32INLIBDIR: "./ESP32/Internal-libraries/"
 
     runs-on: ubuntu-latest
 
@@ -22,4 +25,5 @@ jobs:
     
       - name: Install sketch External libraries
         run: |
-          echo ${{ env.ESP32CONFIGFILE }}
+          echo ${{ env.ESP32EXLIBDIR }}
+          echo ${{ env.ESP32EXLIBBUILDDIR }}
