@@ -1,0 +1,31 @@
+name: ESP32 Code Validation
+
+on: [push, pull_request]
+
+jobs:
+
+  test-matrix:
+
+    strategy:
+      matrix:
+        arduino-platform: ["esp32:esp32"]
+        include:
+          - arduino-platform: "esp32:esp32"
+            fqbn: "esp32:esp32:esp32"
+
+    env:
+      ESP32EXTERNALLIB: ["Adafruit_BusIO", "Adafruit_TCS34725", "ArduinoJson",
+                         "AsyncTCP", "ESPAsyncWebServer", "FastLED", "ESP32Servo"]
+      ESP32INTERNALLIB: ["AliceChromie", "AliceDistanceHCSR04", "AliceKing", "AliceParfum",
+                         "AliceServo", "AliceUtils", "AliceWebSocketServer", "AliceWiFi"]
+      ESP32CONFIGFILE: "./Common/Config/arduino-cli.yml"
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Install sketch External libraries
+        run: |
+          for name in ${{ $env.ESP32EXTERNALLIB }}; do
+            echo $name
+          done
