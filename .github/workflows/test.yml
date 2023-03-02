@@ -22,4 +22,4 @@ jobs:
     
       - name: Install sketch External libraries
         run: |
-          echo $env.ESP32EXTERNALLIB
+          echo $ESP32EXTERNALLIB
